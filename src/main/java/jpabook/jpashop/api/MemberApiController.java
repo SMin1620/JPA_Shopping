@@ -5,7 +5,9 @@ import jpabook.jpashop.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class MemberApiController {
 
     private final MemberService memberService;
@@ -71,9 +74,10 @@ public class MemberApiController {
 
     // login
     @PostMapping("/api/v1/members/login")
-    public ResponseEntity<String> loginMember(
-    ) {
-        return ResponseEntity.ok().body(memberService.login("", ""));
+    public ResponseEntity<String> login(Authentication authentication) {
+
+        String loginData = memberService.login("나", "");
+        return ResponseEntity.ok().body(loginData + " " + authentication.getName());
 
     }
 
