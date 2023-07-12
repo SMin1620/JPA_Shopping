@@ -21,7 +21,7 @@ public class MemberService {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    private Long expiredMs = 1000 * 60 * 60l;
+    private Long expiredMs = 1000 * 60 * 60l;   // 1시간
 
     /**
      * 회원 가입
