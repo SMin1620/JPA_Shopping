@@ -79,7 +79,6 @@ public class OrderRepository {
 
         // ======= 해결 : status와 name 이라는 파라미터가 없어도 동적 쿼리가 실행되게 하는 방법 -> Query DSL ======= //
 
-        
     }
 
     /**
