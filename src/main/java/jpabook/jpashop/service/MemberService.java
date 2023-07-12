@@ -2,8 +2,10 @@ package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.repository.MemberRepository;
+import jpabook.jpashop.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +17,11 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+
+    @Value("${jwt.secret}")
+    private String secretKey;
+
+    private Long expiredMs = 1000 * 60 * 60l;
 
     /**
      * 회원 가입
@@ -35,6 +42,13 @@ public class MemberService {
         if (! findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
+    }
+
+    // 회원 로그인
+    public String login(String userName, String password) {
+
+        // 인증 과정 생략
+        return JwtUtil.createJwt(userName, secretKey, expiredMs);
     }
 
     // 회원 전체 조회

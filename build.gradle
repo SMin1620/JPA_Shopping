@@ -23,7 +23,6 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-devtools'
@@ -32,6 +31,10 @@ dependencies {
 	// 스프링 부트 3.0 미만: Hibernate5Module 등록 -> 주문 + 배송정보 + 회원을 조회하는 API 에서 v1 무한 로딩을 막기 위해 Hibernate5Module 모듈 등록.
 	// 스프링 부트 3.0 이상: Hibernate5JakartaModule 등록 -> implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta'
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
+
+	// 스프링 시큐리티
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
 
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'

@@ -19,7 +19,7 @@ public class AuthenticationConfig {
                 .csrf().disable()
                 .cors().and()
                 .authorizeRequests()
-                .antMatchers("/api/v1/members", "/api/v1/login").permitAll() // join, login은 언제나 가능
+                .antMatchers("/api/v1/members/login", "/api/v1/login").permitAll() // join, login은 언제나 가능
                 .antMatchers(HttpMethod.GET, "/api/**").permitAll() // 모든 get요청 허용
                 .antMatchers(HttpMethod.POST, "/api/**").authenticated() // 모든 post요청을 인증된사용자인지 check
                 .and()

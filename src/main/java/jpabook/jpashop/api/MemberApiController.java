@@ -5,6 +5,7 @@ import jpabook.jpashop.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -68,6 +69,16 @@ public class MemberApiController {
     }
 
 
+    // login
+    @PostMapping("/api/v1/members/login")
+    public ResponseEntity<String> loginMember(
+    ) {
+        return ResponseEntity.ok().body(memberService.login("", ""));
+
+    }
+
+
+
     // ==== DTO ==== //
 
     @Data
@@ -110,6 +121,12 @@ public class MemberApiController {
     @AllArgsConstructor
     static class UpdateMemberResponse {
         private Long id;
+        private String name;
+    }
+
+    // login
+    @Data
+    static class LoginMemberResponse {
         private String name;
     }
 }
