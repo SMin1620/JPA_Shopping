@@ -124,4 +124,16 @@ public class OrderRepository {
     }
 
 
+    public List<Order> findAllWithItem() {
+        return em.createQuery(
+                "select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" +
+                        " join fetch oi.item i", Order.class
+        )
+                .setFirstResult(1)  // 페이징 처리의 한계 -> 메모리에서 메모리 처리를 해버리기 때문에 데이터가 많아지면 문제가 생긴다. ** 중요 !!!****
+                .setMaxResults(100)
+                .getResultList();
+    }
 }
