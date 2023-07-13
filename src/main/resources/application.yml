@@ -16,6 +16,7 @@ spring:
       hibernate:
         show_sql: true # sout으로 출력하는 방식
         format_sql: true
+        default_batch_fetch_size: 100
 
 logging:
   level:

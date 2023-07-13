@@ -112,6 +112,7 @@ public class OrderRepository {
     /**
      * Order 와 연관 관계를 가지는 Member, Delivery 객체를 한번에 가져온다. -> fetch
      *
+     * V3.1 에서 Order 기준으로 XToOne 관계에서만 fetch 를 한다.
      */
     public List<Order> findAllWithMemberDelivery() {
 
@@ -120,6 +121,21 @@ public class OrderRepository {
                         " join fetch o.member m" +
                         " join fetch o.delivery d", Order.class
         ).getResultList();
+    }
+
+    /**
+     * V3.1 페이징 한계 돌파
+     */
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class
+        )
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
     }
 
 
